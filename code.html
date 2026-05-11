@@ -10,33 +10,33 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍄</text></svg>">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{width:100%;height:100%;background:#000;overflow:hidden;touch-action:none;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
+html,body{width:100%;height:100%;background:#000;overflow:hidden;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
 body{display:flex;justify-content:center;align-items:center;flex-direction:column}
-canvas{image-rendering:pixelated;image-rendering:crisp-edges}
-#touch-controls{display:none;position:fixed;bottom:0;left:0;right:0;height:140px;pointer-events:none;z-index:10}
-#touch-controls>div{pointer-events:auto}
-.dpad{position:absolute;left:15px;bottom:20px;width:130px;height:130px}
-.dpad-btn{position:absolute;width:42px;height:42px;background:rgba(255,255,255,0.25);border:2px solid rgba(255,255,255,0.4);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;color:rgba(255,255,255,0.8);-webkit-tap-highlight-color:transparent}
-.dpad-btn:active{background:rgba(255,255,255,0.5)}
-.dpad-btn.up{left:44px;top:0}
-.dpad-btn.down{left:44px;bottom:0}
-.dpad-btn.left{left:0;top:44px}
-.dpad-btn.right{right:0;top:44px}
-.action-btns{position:absolute;right:15px;bottom:20px}
-.ab-btn{position:absolute;width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:bold;color:rgba(255,255,255,0.8);-webkit-tap-highlight-color:transparent}
-.ab-btn:active{opacity:0.7}
-.ab-btn.a{right:0;bottom:30px;background:rgba(181,49,32,0.6);border:2px solid rgba(181,49,32,0.9)}
-.ab-btn.b{right:60px;bottom:60px;background:rgba(0,88,248,0.6);border:2px solid rgba(0,88,248,0.9)}
-.start-btn{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);width:50px;height:26px;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.4);border-radius:4px;color:rgba(255,255,255,0.7);font-size:9px;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent}
-.start-btn:active{background:rgba(255,255,255,0.4)}
-@media(hover:none)and(pointer:coarse){#touch-controls{display:block}}
-@media(max-height:400px){#touch-controls{height:100px}.dpad{width:100px;height:100px}.dpad-btn{width:34px;height:34px;font-size:16px}.dpad-btn.up{left:33px}.dpad-btn.down{left:33px}.dpad-btn.left{left:0;top:33px}.dpad-btn.right{right:0;top:33px}.ab-btn{width:44px;height:44px;font-size:14px}.ab-btn.a{right:0;bottom:20px}.ab-btn.b{right:50px;bottom:44px}}
-#sound-toggle{position:fixed;top:8px;right:8px;z-index:20;background:rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.3);color:#fff;font-size:18px;width:36px;height:36px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center}
+canvas{image-rendering:pixelated;image-rendering:crisp-edges;touch-action:none}
+#touch-controls{display:none;position:fixed;bottom:0;left:0;right:0;z-index:10}
+#game-area{display:flex;justify-content:center;align-items:center;flex:1;width:100%;overflow:hidden}
+.dpad{position:absolute;left:10px;bottom:8px;width:150px;height:150px}
+.dpad-btn{position:absolute;width:48px;height:48px;background:rgba(255,255,255,0.3);border:2px solid rgba(255,255,255,0.5);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;color:rgba(255,255,255,0.9);-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.dpad-btn:active,.dpad-btn.active{background:rgba(255,255,255,0.6)}
+.dpad-btn.up{left:51px;top:0}
+.dpad-btn.down{left:51px;bottom:0}
+.dpad-btn.left{left:0;top:51px}
+.dpad-btn.right{right:0;top:51px}
+.action-btns{position:absolute;right:10px;bottom:8px}
+.ab-btn{position:absolute;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:bold;color:rgba(255,255,255,0.9);-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.ab-btn:active,.ab-btn.active{opacity:0.6}
+.ab-btn.a{right:0;bottom:30px;background:rgba(181,49,32,0.7);border:2px solid rgba(181,49,32,0.9)}
+.ab-btn.b{right:70px;bottom:65px;background:rgba(0,88,248,0.7);border:2px solid rgba(0,88,248,0.9)}
+.start-btn{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);width:56px;height:30px;background:rgba(255,255,255,0.25);border:1px solid rgba(255,255,255,0.5);border-radius:6px;color:rgba(255,255,255,0.8);font-size:10px;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.start-btn:active,.start-btn.active{background:rgba(255,255,255,0.5)}
+#sound-toggle{position:fixed;top:8px;right:8px;z-index:20;background:rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.4);color:#fff;font-size:18px;width:36px;height:36px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;touch-action:manipulation}
+#landscape-hint{display:none;position:fixed;inset:0;z-index:100;background:#000;color:#fff;font-size:18px;font-family:sans-serif;text-align:center;justify-content:center;align-items:center;flex-direction:column}
+#landscape-hint span{font-size:40px;display:block;margin-bottom:16px}
 </style>
 </head>
 <body>
 <button id="sound-toggle">🔊</button>
-<canvas id="c"></canvas>
+<div id="game-area"><canvas id="c"></canvas></div>
 <div id="touch-controls">
   <div class="dpad">
     <div class="dpad-btn up" data-dir="up">▲</div>
@@ -50,6 +50,7 @@ canvas{image-rendering:pixelated;image-rendering:crisp-edges}
   </div>
   <div class="start-btn" data-btn="start">START</div>
 </div>
+<div id="landscape-hint"><span>📱↻</span>Rotate to landscape to play</div>
 <script>
 'use strict';
 
@@ -296,20 +297,41 @@ function clamp(v,lo,hi){return Math.max(lo,Math.min(hi,v))}
 
 class Input{
   constructor(){
-    this.keys={};this.jp={};this._p={};
+    this.keys={};this.jp={};this._p={};this._touchActive=new Map();
     document.addEventListener('keydown',e=>{e.preventDefault();this.keys[e.code]=true;audio.ensure()});
     document.addEventListener('keyup',e=>{e.preventDefault();this.keys[e.code]=false});
     this._setupTouch();
+    this._detectMobile();
+  }
+  _detectMobile(){
+    const isMobile='ontouchstart' in window||navigator.maxTouchPoints>0;
+    if(isMobile){
+      const tc=document.getElementById('touch-controls');
+      if(tc)tc.style.display='block';
+      this._showLandscapeHint();
+      window.addEventListener('resize',()=>this._showLandscapeHint());
+      window.addEventListener('orientationchange',()=>setTimeout(()=>this._showLandscapeHint(),200));
+    }
+  }
+  _showLandscapeHint(){
+    const hint=document.getElementById('landscape-hint');
+    if(!hint)return;
+    const portrait=window.innerHeight>window.innerWidth*1.2;
+    hint.style.display=portrait?'flex':'none';
   }
   _setupTouch(){
     const btns=document.querySelectorAll('[data-dir],[data-btn]');
-    const touches=new Map();
     btns.forEach(el=>{
       const dir=el.dataset.dir;
       const btn=el.dataset.btn;
       const on=e=>{
-        e.preventDefault();audio.init();audio.resume();
-        const id=e.changedTouches?e.changedTouches[0].identifier:'mouse';
+        e.preventDefault();e.stopPropagation();
+        audio.init();audio.resume();
+        for(let i=0;i<e.changedTouches.length;i++){
+          const touch=e.changedTouches[i];
+          this._touchActive.set(touch.identifier,{dir,btn,el});
+          el.classList.add('active');
+        }
         if(dir){
           if(dir==='left')this.keys.ArrowLeft=true;
           if(dir==='right')this.keys.ArrowRight=true;
@@ -319,28 +341,32 @@ class Input{
         if(btn==='jump')this.keys.Space=true;
         if(btn==='run')this.keys.ShiftLeft=true;
         if(btn==='start'){this.keys.Enter=true;this._startPressed=true}
-        touches.set(id,el);
       };
       const off=e=>{
-        e.preventDefault();
-        const ids=e.changedTouches?[...e.changedTouches].map(t=>t.identifier):['mouse'];
-        ids.forEach(id=>{
-          const el=touches.get(id);if(!el)return;touches.delete(id);
-          const d=el.dataset.dir,b=el.dataset.btn;
-          if(d==='left')this.keys.ArrowLeft=false;
-          if(d==='right')this.keys.ArrowRight=false;
-          if(d==='up')this.keys.ArrowUp=false;
-          if(d==='down')this.keys.ArrowDown=false;
-          if(b==='jump')this.keys.Space=false;
-          if(b==='run')this.keys.ShiftLeft=false;
-          if(b==='start')this.keys.Enter=false;
-        });
+        e.preventDefault();e.stopPropagation();
+        for(let i=0;i<e.changedTouches.length;i++){
+          const touch=e.changedTouches[i];
+          this._touchActive.delete(touch.identifier);
+          el.classList.remove('active');
+        }
+        if(this._touchActive.size===0){
+          if(dir){this.keys.ArrowLeft=false;this.keys.ArrowRight=false;this.keys.ArrowUp=false;this.keys.ArrowDown=false}
+          if(btn==='jump')this.keys.Space=false;
+          if(btn==='run')this.keys.ShiftLeft=false;
+          if(btn==='start')this.keys.Enter=false;
+        }else{
+          let stillDir=false,stillBtn=false;
+          for(const[,v]of this._touchActive){if(v.dir)stillDir=true;if(v.btn)stillBtn=true}
+          if(dir&&!stillDir){this.keys.ArrowLeft=false;this.keys.ArrowRight=false;this.keys.ArrowUp=false;this.keys.ArrowDown=false}
+          if(btn==='jump'&&!stillBtn)this.keys.Space=false;
+          if(btn==='run'&&!stillBtn)this.keys.ShiftLeft=false;
+        }
       };
       el.addEventListener('touchstart',on,{passive:false});
       el.addEventListener('touchend',off,{passive:false});
       el.addEventListener('touchcancel',off,{passive:false});
     });
-    document.addEventListener('touchstart',e=>{audio.init();audio.resume()},{once:true});
+    document.addEventListener('touchstart',e=>{audio.init();audio.resume()},{once:true,passive:true});
   }
   update(){
     for(const k in this.keys)this.jp[k]=this.keys[k]&&!this._p[k];this._p={...this.keys};
@@ -1128,11 +1154,19 @@ class Game{
 
 const cv=document.getElementById('c'),cx=cv.getContext('2d');
 cv.width=CW;cv.height=CH;
-function resize(){const r=CW/CH;let w=innerWidth,h=innerHeight;
-  const isMobile='ontouchstart' in window;
-  if(isMobile)h-=140;
-  if(w/h>r)w=h*r;else h=w/r;cv.style.width=(w|0)+'px';cv.style.height=(h|0)+'px'}
-resize();addEventListener('resize',resize);
+function resize(){
+  const r=CW/CH;
+  let w=innerWidth,h=innerHeight;
+  const isMobile='ontouchstart' in window||navigator.maxTouchPoints>0;
+  if(isMobile){
+    const tc=document.getElementById('touch-controls');
+    const tch=tc?tc.offsetHeight||150:0;
+    h=Math.max(h-tch,100);
+  }
+  if(w/h>r)w=h*r;else h=w/r;
+  cv.style.width=(w|0)+'px';cv.style.height=(h|0)+'px';
+}
+resize();addEventListener('resize',resize);addEventListener('orientationchange',()=>setTimeout(resize,100));
 new Game(cv,cx).start();
 </script>
 </body>
